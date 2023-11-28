@@ -1,36 +1,34 @@
-let button = document.querySelector(".cep-button");
+function cleanString(string) {
+  return string.replace(/[^0-9]/g, "");
+}
 
-const respo = document.querySelector(".formresponse-text");
+let button = document.querySelector(".cep-button");
+const response = document.querySelector(".formresponse-text");
 let clean = document.querySelector(".clean");
 
 button.addEventListener("click", async () => {
-  respo.value = "";
-  const text = document.querySelector(".textarea").value;
+  response.value = "";
+  const textNotClean = document.querySelector(".textarea").value;
+  let text = cleanString(textNotClean);
   try {
     const dados = await fetch(`https://viacep.com.br/ws/${text}/json`);
     const json = await dados.json();
-    respo.style.display = "block";
-    respo.value = `
+    document.querySelector(".textarea").value = "";
+    response.style.display = "block";
+    response.value = `
 CEP: ${json.cep}
 BAIRRO:${json.bairro}
 RUA: ${json.logradouro}
   `.trim();
   } catch (error) {
-    alert("Erro ao buscar o CEP");
-  } finally {
-    const dados = await fetch(`https://viacep.com.br/ws/${text}/json`);
-    const json = await dados.json();
-    respo.style.display = "block";
-    respo.value = `
-CEP: ${json.cep}
-BAIRRO:${json.bairro}
-RUA: ${json.logradouro}
-  `.trim();
+    response.style.display = "none";
+    clean.style.display = "none";
 
-    clean.style.display = "block";
+    alert("Erro ao buscar o CEP");
   }
 });
+
 clean.addEventListener("click", () => {
-  respo.style.display = "none";
+  response.style.display = "none";
   clean.style.display = "none";
 });
