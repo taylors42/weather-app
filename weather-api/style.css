@@ -42,6 +42,7 @@ html {
 
 .card:hover {
   transition: 2s;
+  transform: scale(1.01);
   -webkit-box-shadow: 0px 0px 98px 0px rgba(255, 255, 255, 0.57);
   -moz-box-shadow: 0px 0px 98px 0px rgba(255, 255, 255, 0.57);
   box-shadow: 0px 0px 98px 0px rgba(255, 255, 255, 0.57);
@@ -49,40 +50,44 @@ html {
 
 .group1 {
   display: flex;
-  margin-top: 2rem;
   margin-left: 2rem;
+  justify-content: left;
   align-items: center;
 }
 
 .group1 .city {
-  margin-top: 0.5rem;
   font-weight: 800;
-  font-size: 3rem;
+  font-size: 4rem;
   color: white;
 }
 
 .group1 .date {
   color: white;
   font-weight: 500;
+  font-size: 1.2rem;
 }
 .infos {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: space-between;
 }
-.sun {
-  margin-left: 6rem;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: rgb(253, 29, 29);
-  background: linear-gradient(
-    90deg,
-    rgba(253, 29, 29, 1) 21%,
-    rgba(255, 172, 27, 1) 90%
-  );
-  animation: sun-animation 5s infinite;
+
+.group2 {
+  display: flex;
+  margin-left: 2rem;
+  margin-top: 1rem;
+  align-items: baseline;
+}
+.group2 h1 {
+  font-size: 5rem;
+  font-weight: 800;
+  color: white;
+}
+.group2 .humidity {
+  margin-left: 3rem;
+  font-weight: 500;
+  font-size: 2rem;
+  color: white;
 }
 @keyframes my-animation {
   0% {
@@ -95,9 +100,23 @@ html {
     opacity: 40%;
   }
 }
+@keyframes sun-scale {
+  0% {
+    transition: 1s;
+    transform: scale(1);
+  }
+  50% {
+    transition: 1s;
+    transform: scale(1.2);
+  }
+  100% {
+    transition: 1s;
+    transform: scale(1);
+  }
+}
 @keyframes sun-animation {
   0% {
-    transition: 0.4s;
+    transition: 3s;
     background: rgb(253, 29, 29);
     background: linear-gradient(
       90deg,
@@ -105,35 +124,19 @@ html {
       rgba(255, 172, 27, 1) 90%
     );
   }
-  25% {
-    transition: 0.4s;
-    background: rgb(253, 29, 29);
-    background: linear-gradient(
-      90deg,
-      rgba(253, 29, 29, 1) 47%,
-      rgba(255, 172, 27, 1) 90%
-    );
-  }
   50% {
-    transition: 0.4s;
-    background: rgb(253, 29, 29);
+    transition: 3s;
+    background: rgb(73, 73, 73);
+    transform: rotate(-45deg);
     background: linear-gradient(
       90deg,
-      rgba(253, 29, 29, 1) 69%,
-      rgba(255, 172, 27, 1) 100%
-    );
-  }
-  75% {
-    transition: 0.4s;
-    background: rgb(255, 172, 27);
-    background: linear-gradient(
-      90deg,
-      rgba(255, 172, 27, 1) 0%,
-      rgba(253, 29, 29, 1) 15%
+      rgba(73, 73, 73, 1) 0%,
+      rgba(120, 120, 120, 1) 26%,
+      rgba(177, 177, 177, 1) 58%
     );
   }
   100% {
-    transition: 0.4s;
+    transition: 3s;
     background: rgb(253, 29, 29);
     background: linear-gradient(
       90deg,

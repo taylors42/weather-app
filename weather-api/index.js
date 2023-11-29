@@ -1,7 +1,9 @@
 const url =
   "https://weatherapi-com.p.rapidapi.com/current.json?q=-23.73%2C-46.6";
 /* const urlCustom = `https://weatherapi-com.p.rapidapi.com/current.json?q=${latitude}%2C${longitude}`;*/
-
+state = document.querySelector(".state");
+sun = document.createElement("img");
+sun.src = "";
 async function weatherAPI() {
   const options = await {
     method: "GET",
