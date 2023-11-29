@@ -85,12 +85,12 @@ html {
   align-items: baseline;
 }
 .group2 .temperature {
-  font-size: 5rem;
+  font-size: 4.5rem;
   font-weight: 800;
   color: white;
 }
 .group2 .humidity {
-  margin-left: 3rem;
+  margin-left: 1rem;
   font-weight: 500;
   font-size: 2rem;
   color: white;
