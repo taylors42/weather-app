@@ -1,6 +1,8 @@
 state = document.querySelector(".state");
 sun = document.createElement("img");
+// Seu código JavaScript
 
+console.log(window.API_KEY);
 async function WeatherApi() {
   try {
     const ipResponse = await fetch(
