@@ -1,31 +1,43 @@
-const url =
-  "https://weatherapi-com.p.rapidapi.com/current.json?q=-23.73%2C-46.6";
-/* const urlCustom = `https://weatherapi-com.p.rapidapi.com/current.json?q=${latitude}%2C${longitude}`;*/
 state = document.querySelector(".state");
 sun = document.createElement("img");
-sun.src = "";
-async function weatherAPI() {
-  const options = await {
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": "6af0087817msh11552228f1f7680p194fc6jsn88e02f9db09e",
-      "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com",
-    },
-  };
 
+async function WeatherApi() {
   try {
-    const response = await fetch(url, options);
-    const json = await response.json();
-    console
-      .log(
-        `CIDADE:${json.location.name}
-TEMPERATURA:${json.current.temp_c + "C"}
-HUMIDADE:${json.current.humidity + "%"}`
-      )
-      .trim();
+    const ipResponse = await fetch(
+      "https://ipinfo.io/json?token=917f90adf26853"
+    );
+    const weatherJson = await ipResponse.json();
+    let weatherJsonLocale = await weatherJson.loc;
+    weatherJsonLocale = await weatherJsonLocale.replace(/,/, "%2C");
+    const url = `https://weatherapi-com.p.rapidapi.com/current.json?q=${weatherJsonLocale}`;
+
+    const options = await {
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Key": "6af0087817msh11552228f1f7680p194fc6jsn88e02f9db09e",
+        "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com",
+      },
+    };
+
+    const weatherResponseFetch = await fetch(url, options);
+    const weatherResponseObj = await weatherResponseFetch.json();
+    document.querySelector(".city").textContent =
+      weatherResponseObj.location.name;
+    document.querySelector(".date").textContent = new Date().toLocaleDateString(
+      "pt-br",
+      { year: "numeric", month: "numeric", day: "numeric" }
+    );
+    document.querySelector(".temperature").textContent =
+      weatherResponseObj.current.temp_c + "C";
+    document.querySelector(".humidity").textContent =
+      "H: " + weatherResponseObj.current.humidity + "%";
+    document.querySelector(".state").appendChild(sun);
+    let icon = weatherResponseObj.current.condition.icon;
+    icon = icon.replace(/64x64/, "128x128");
+    sun.src = `${icon}`;
   } catch (error) {
-    console.error(`Erro ao buscar a previsão do tempo: ${error.message}`);
+    console.log("erro");
   }
 }
 
-weatherAPI();
+WeatherApi();
