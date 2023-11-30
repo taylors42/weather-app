@@ -19,4 +19,4 @@ jobs:
       - name: Configure Environment Variables
         env:
           API_KEY: ${{ secrets.API_KEY }}
-        run: echo `const config = ${{ secrets.API_KEY }}` >> touch api_key.js
+        run: touch api_key.js && echo `const config = ${{ secrets.API_KEY }}` >> api_key.js
