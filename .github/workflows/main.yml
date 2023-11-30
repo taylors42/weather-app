@@ -4,6 +4,9 @@ jobs:
   web-deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
+    env:
+      API_KEY: ${{ secrets.API_KEY }}
+      API_KEY2: ${{ secrets.API_KEY2 }}
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v3
@@ -15,8 +18,3 @@ jobs:
           username: ${{ secrets.ftp_user }}
           password: ${{ secrets.ftp_password }}
           server-dir: "/public_html/repositories/weatherBasicSite/"
-
-      - name: Configure Environment Variables
-        env:
-          API_KEY: ${{ secrets.API_KEY }}
-        run: touch api_key.js && echo `const config = ${{ secrets.API_KEY }}` >> api_key.js
