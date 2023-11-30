@@ -1,7 +1,7 @@
+import { test } from "./test.js";
 state = document.querySelector(".state");
 sun = document.createElement("img");
 // Seu código JavaScript
-
 console.log(window.API_KEY);
 async function WeatherApi() {
   try {
@@ -43,3 +43,4 @@ async function WeatherApi() {
 }
 
 WeatherApi();
+console.log(test);
