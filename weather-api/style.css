@@ -60,6 +60,7 @@ html {
   font-size: 2.4rem;
   color: white;
 }
+
 .group1 img {
   margin-top: 1rem;
   margin-right: 1rem;
@@ -67,11 +68,13 @@ html {
   height: 180px;
   animation: sun-scale 5s infinite;
 }
+
 .group1 .date {
   color: white;
   font-weight: 500;
   font-size: 1.2rem;
 }
+
 .infos {
   display: flex;
   flex-direction: column;
@@ -84,17 +87,20 @@ html {
   margin-top: 1rem;
   align-items: baseline;
 }
+
 .group2 .temperature {
   font-size: 4.5rem;
   font-weight: 800;
   color: white;
 }
+
 .group2 .humidity {
-  margin-left: 3rem;
+  margin-left: 1rem;
   font-weight: 500;
   font-size: 2rem;
   color: white;
 }
+
 @keyframes my-animation {
   0% {
     opacity: 40%;

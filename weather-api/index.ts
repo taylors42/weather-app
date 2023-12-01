@@ -1,6 +1,5 @@
-state = document.querySelector(".state");
-sun = document.createElement("img");
-
+let state = document.querySelector(".state");
+let sun = document.createElement("img");
 async function WeatherApi() {
   try {
     const ipResponse = await fetch(
@@ -41,4 +40,3 @@ async function WeatherApi() {
 }
 
 WeatherApi();
-console.log(test);

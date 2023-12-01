@@ -1,0 +1,8 @@
+# Arquivos temporários
+*.log
+*.swp
+*~
+*.json
+# Diretórios
+node_modules/
+dist/
