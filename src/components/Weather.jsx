@@ -7,35 +7,40 @@ function Weather() {
     const [humidity, setHumidity] = useState("")
     const [temperature, setTemperature] = useState("");
     const [date, setDate] = useState("")
+    
     useEffect(() => {
         const weatherApi = async () =>
         {
-            try {
-              const ipResponse = await fetch(
-                "https://ipinfo.io/json?token=917f90adf26853"
-              );
-              const weatherJson = await ipResponse.json();
-              let weatherJsonLocale = await weatherJson.loc;
-              weatherJsonLocale = await weatherJsonLocale.replace(/,/, "%2C");
-              const url = `https://weatherapi-com.p.rapidapi.com/current.json?q=${weatherJsonLocale}`;
+          try {
+            const ipResponse = await fetch(
+              "https://ipinfo.io/json?token=917f90adf26853"
+            );
+            const weatherJson = await ipResponse.json();
+            let weatherJsonLocale = await weatherJson.loc;
+            weatherJsonLocale = await weatherJsonLocale.replace(/,/, "%2C");
+            const url = `https://weatherapi-com.p.rapidapi.com/current.json?q=${weatherJsonLocale}`;
           
-              const options = await {
+            const options = await
+              {
                 method: "GET",
-                headers: {
-                  "X-RapidAPI-Key": "6af0087817msh11552228f1f7680p194fc6jsn88e02f9db09e",
-                  "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com",
-                },
+                headers:
+                  {
+                    "X-RapidAPI-Key": "6af0087817msh11552228f1f7680p194fc6jsn88e02f9db09e",
+                    "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com",
+                  },
               };
           
               const weatherResponseFetch = await fetch(url, options);
               const weatherResponseObj = await weatherResponseFetch.json();
-              setCity(weatherResponseObj.location.name)
+
+              setCity(weatherResponseObj.location.name);
               setDate(new Date().toLocaleDateString(
                 "pt-br",
                 { year: "numeric", month: "numeric", day: "numeric" }
               ));
-              setTemperature(weatherResponseObj.current.temp_c + "C")
-              setHumidity("H: " + weatherResponseObj.current.humidity + "%")
+
+              setTemperature(weatherResponseObj.current.temp_c + "C");
+              setHumidity("H: " + weatherResponseObj.current.humidity + "%");
               
               let icon = weatherResponseObj.current.condition.icon;
               icon = icon.replace("64x64", "128x128");
